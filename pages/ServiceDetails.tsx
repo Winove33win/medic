@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Service } from '../types';
+import { Page } from '../types';
 import { SERVICES } from '../constants';
 import { ArrowLeft, Clock, CheckCircle, FileText, Calendar } from 'lucide-react';
 import { getIconComponent } from '../utils/iconHelper';
