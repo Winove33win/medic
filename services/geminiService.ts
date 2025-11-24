@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const AI_INSTRUCTIONS = `
 Você é o Assistente Virtual da Clínica Vida & Saúde.
@@ -18,18 +18,23 @@ export const sendMessageToGemini = async (message: string): Promise<string> => {
       return "Desculpe, o sistema de chat está temporariamente indisponível (Chave de API ausente).";
     }
 
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: message,
-      config: {
-        systemInstruction: AI_INSTRUCTIONS,
+    const ai = new GoogleGenerativeAI(process.env.API_KEY);
+    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    const prompt = `${AI_INSTRUCTIONS}\n\nUsuário: ${message}`;
+    const response = await model.generateContent({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }],
+        },
+      ],
+      generationConfig: {
         temperature: 0.7,
-      }
+      },
     });
 
-    return response.text || "Desculpe, não consegui entender. Pode repetir?";
+    return response.response.text() || "Desculpe, não consegui entender. Pode repetir?";
   } catch (error) {
     console.error("Error interacting with Gemini:", error);
     return "Ocorreu um erro ao processar sua mensagem. Por favor, tente novamente mais tarde.";

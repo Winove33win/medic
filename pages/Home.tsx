@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from '../types';
-import { Clock, Shield, Users, ArrowRight, Star, Calendar, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calendar, HeartPulse, Leaf, Stethoscope, Star } from 'lucide-react';
 import { SERVICES, TESTIMONIALS } from '../constants';
 import { useDoctors } from '../context/DoctorContext';
 import { getIconComponent } from '../utils/iconHelper';
@@ -13,278 +13,244 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }) => {
   const { doctors } = useDoctors();
-  
+
   const renderIcon = (iconName: string) => {
     const IconComponent = getIconComponent(iconName);
-    return <IconComponent className="h-8 w-8 text-primary-600" />;
+    return <IconComponent className="h-7 w-7 text-primary-600" />;
   };
 
   return (
-    <div className="flex flex-col w-full">
-      
-      {/* SECTION 1: HERO */}
-      <section className="relative bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block xl:inline">Clínica Médica Vida & Saúde:</span>{' '}
-                  <span className="block text-primary-600 xl:inline">Excelência em Cuidar de Você</span>
+    <div className="min-h-screen bg-gray-50 text-slate-900">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-emerald-50 opacity-80" aria-hidden />
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-primary-700 font-medium">
+                <HeartPulse className="h-5 w-5" />
+                Medicina preventiva e atendimento acolhedor
+              </div>
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-slate-900">
+                  Cuidado médico humanizado para cada fase da sua saúde
                 </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Referência em atendimento médico humanizado em São Paulo. Contamos com tecnologia de ponta e especialistas em Cardiologia, Pediatria e diversas áreas para garantir o seu bem-estar completo.
+                <p className="text-lg text-slate-600 max-w-2xl">
+                  Equipe multidisciplinar, tecnologia de diagnóstico avançada e um ambiente minimalista que transmite calma para
+                  você e sua família.
                 </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow">
-                    <button
-                      onClick={() => onNavigate(Page.CONTACT)}
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg"
-                      aria-label="Agendar consulta médica online"
-                    >
-                      Agendar Consulta
-                    </button>
-                  </div>
-                  <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <button
-                      onClick={() => onNavigate(Page.ABOUT)}
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 md:py-4 md:text-lg"
-                    >
-                      Conheça a Clínica
-                    </button>
-                  </div>
-                </div>
               </div>
-            </main>
-          </div>
-        </div>
-        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&q=80&w=1200"
-            alt="Equipe médica da Clínica Vida e Saúde em atendimento"
-            fetchPriority="high"
-            width="1200"
-            height="800"
-          />
-        </div>
-      </section>
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={() => onNavigate(Page.CONTACT)}
+                  className="inline-flex items-center gap-2 rounded-full bg-primary-600 px-6 py-3 text-white font-semibold shadow-sm hover:bg-primary-700 transition"
+                >
+                  Agendar consulta
+                  <Calendar className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => onNavigate(Page.ABOUT)}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-slate-700 font-semibold hover:border-primary-200 hover:text-primary-700 transition"
+                >
+                  Conheça a clínica
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-4 max-w-xl">
+                {[{ label: 'Atendimento 07h às 19h', icon: Stethoscope }, { label: 'Ambiente seguro e higienizado', icon: Leaf }].map((item) => (
+                  <div key={item.label} className="flex items-center gap-3 rounded-2xl bg-slate-50 border border-slate-100 px-4 py-3">
+                    <item.icon className="h-5 w-5 text-primary-600" />
+                    <span className="text-sm font-medium text-slate-700">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-      {/* SECTION 2: STATS/FEATURES */}
-      <section className="bg-primary-700 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-center">
-            <div className="flex flex-col items-center text-white">
-              <div className="bg-white/10 p-4 rounded-full mb-4">
-                <Clock className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Horário Estendido</h3>
-              <p className="mt-2 text-primary-100">Atendimento médico das 07h às 19h.</p>
-            </div>
-            <div className="flex flex-col items-center text-white">
-              <div className="bg-white/10 p-4 rounded-full mb-4">
-                <Shield className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Segurança e Higiene</h3>
-              <p className="mt-2 text-primary-100">Protocolos rigorosos para sua saúde.</p>
-            </div>
-            <div className="flex flex-col items-center text-white">
-              <div className="bg-white/10 p-4 rounded-full mb-4">
-                <Users className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Médicos Especialistas</h3>
-              <p className="mt-2 text-primary-100">Corpo clínico formado nas melhores universidades.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: SERVICES PREVIEW */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-base text-primary-600 font-semibold tracking-wide uppercase">Especialidades Médicas</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Serviços de Saúde Completos
-            </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-              Da prevenção ao tratamento, oferecemos consultas e exames integrados.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.slice(0, 6).map((service) => (
-              <div 
-                key={service.id} 
-                className="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-all duration-300 cursor-pointer"
-                onClick={() => onServiceClick(service.id)}
-              >
-                <div className="p-6">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-50 text-primary-600 mb-4">
-                    {renderIcon(service.icon)}
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900">{service.title}</h3>
-                  <p className="mt-2 text-base text-gray-500">{service.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-             <button onClick={() => onNavigate(Page.SERVICES)} className="text-primary-600 font-semibold hover:text-primary-700 flex items-center justify-center mx-auto">
-               Ver todas as especialidades e exames <ArrowRight className="ml-2 h-4 w-4"/>
-             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: ABOUT PREVIEW */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-            <div>
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                Sobre a Clínica Vida & Saúde
-              </h2>
-              <p className="mt-3 max-w-3xl text-lg text-gray-500">
-                Fundada em 2010 em São Paulo, nascemos com a missão de democratizar o acesso à saúde de qualidade. Com instalações modernas e um atendimento acolhedor, tratamos cada paciente como parte da nossa família, oferecendo diagnósticos precisos e ágeis.
-              </p>
-              <div className="mt-8 space-y-4">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-green-500" />
-                  </div>
-                  <p className="ml-3 text-base text-gray-700">Mais de 50.000 atendimentos médicos realizados.</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-green-500" />
-                  </div>
-                  <p className="ml-3 text-base text-gray-700">Certificação de Qualidade e Segurança.</p>
-                </div>
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <CheckCircle className="h-6 w-6 text-green-500" />
-                  </div>
-                  <p className="ml-3 text-base text-gray-700">Laboratório próprio para coleta de exames.</p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 lg:mt-0">
-              <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="relative">
+              <div className="absolute -inset-6 bg-primary-100/50 blur-3xl rounded-full" aria-hidden />
+              <div className="relative overflow-hidden rounded-3xl border border-slate-100 shadow-xl bg-white">
                 <img
-                  className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
-                  alt="Recepção moderna da clínica médica"
-                  loading="lazy"
-                  width="800"
-                  height="600"
+                  src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1200"
+                  alt="Equipe médica da Clínica Vida & Saúde"
+                  className="w-full h-[420px] object-cover"
+                  fetchPriority="high"
                 />
+                <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur rounded-2xl px-5 py-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-slate-500">Corpo clínico</p>
+                    <p className="text-lg font-semibold text-slate-900">Especialistas em Cardiologia, Pediatria e Clínica Geral</p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-primary-600" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: TESTIMONIALS */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-12">
-            O que dizem nossos pacientes
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {TESTIMONIALS.map((item) => (
-              <div key={item.id} className="bg-white p-6 rounded-xl shadow-md">
-                <div className="flex items-center mb-4">
-                   {[...Array(5)].map((_, i) => (
-                     <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                   ))}
-                </div>
-                <p className="text-gray-600 italic mb-4">"{item.content}"</p>
-                <div className="flex items-center">
-                  <img 
-                    src={item.avatar} 
-                    alt={`Foto de ${item.name}`} 
-                    className="h-10 w-10 rounded-full object-cover mr-3"
-                    loading="lazy"
-                    width="40"
-                    height="40"
-                  />
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">{item.name}</p>
-                    <p className="text-xs text-gray-500">{item.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+      {/* SERVIÇOS */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+        <div className="flex items-center justify-between gap-4 mb-10">
+          <div>
+            <p className="text-sm font-semibold text-primary-600 uppercase tracking-[0.2em]">Especialidades</p>
+            <h2 className="text-3xl font-semibold text-slate-900">Cuidado completo em um só lugar</h2>
+            <p className="mt-2 text-slate-600 max-w-2xl">Diagnóstico ágil, acompanhamento próximo e exames integrados para você seguir bem.</p>
           </div>
+          <button
+            onClick={() => onNavigate(Page.SERVICES)}
+            className="hidden md:inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-primary-800"
+          >
+            Todas as especialidades
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {SERVICES.slice(0, 6).map((service) => (
+            <article
+              key={service.id}
+              className="group rounded-2xl bg-white border border-slate-100 p-6 shadow-sm hover:shadow-lg transition cursor-pointer"
+              onClick={() => onServiceClick(service.id)}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+                  {renderIcon(service.icon)}
+                </div>
+                <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-primary-600" />
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-slate-900">{service.title}</h3>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">{service.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <button
+          onClick={() => onNavigate(Page.SERVICES)}
+          className="mt-8 inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-primary-800"
+        >
+          Ver todas as especialidades e exames
+          <ArrowRight className="h-5 w-5" />
+        </button>
       </section>
 
-      {/* SECTION 6: TEAM PREVIEW */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-gray-900">Corpo Clínico Especializado</h2>
-            <p className="mt-4 text-lg text-gray-500">Conheça nossos médicos cardiologistas, pediatras e especialistas.</p>
+      {/* MÉDICOS */}
+      <section className="bg-white border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+          <div className="flex items-center justify-between gap-4 mb-10">
+            <div>
+              <p className="text-sm font-semibold text-primary-600 uppercase tracking-[0.2em]">Equipe</p>
+              <h2 className="text-3xl font-semibold text-slate-900">Especialistas que cuidam de você</h2>
+              <p className="mt-2 text-slate-600 max-w-2xl">Médicos dedicados, formados nas melhores instituições e focados em comunicação clara.</p>
+            </div>
+            <button
+              onClick={() => onNavigate(Page.TEAM)}
+              className="hidden md:inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-primary-800"
+            >
+              Ver equipe completa
+              <ArrowRight className="h-5 w-5" />
+            </button>
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {doctors.slice(0, 4).map((doc) => (
-              <div 
-                key={doc.id} 
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {doctors.slice(0, 3).map((doc) => (
+              <article
+                key={doc.id}
+                className="group overflow-hidden rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white shadow-sm hover:shadow-lg transition cursor-pointer"
                 onClick={() => onDoctorClick(doc.id)}
               >
-                <img 
-                  className="w-full h-48 object-cover" 
-                  src={doc.image} 
-                  alt={`Foto Dr(a) ${doc.name} - ${doc.specialty}`}
-                  loading="lazy"
-                  width="400"
-                  height="400"
-                />
-                <div className="p-4 text-center">
-                  <h3 className="text-lg font-medium text-gray-900">{doc.name}</h3>
-                  <p className="text-primary-600 text-sm mb-1">{doc.specialty}</p>
-                  <p className="text-gray-400 text-xs mb-3">{doc.crm}</p>
-                  <span className="text-primary-600 text-sm font-medium hover:underline">Ver perfil completo</span>
+                <div className="h-52 overflow-hidden">
+                  <img
+                    className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    src={doc.image}
+                    alt={`Foto Dr(a) ${doc.name} - ${doc.specialty}`}
+                    loading="lazy"
+                  />
                 </div>
-              </div>
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary-600">
+                    <Stethoscope className="h-4 w-4" />
+                    {doc.specialty}
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900">{doc.name}</h3>
+                  <p className="text-sm text-slate-500">{doc.crm}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{doc.bio}</p>
+                </div>
+              </article>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <button onClick={() => onNavigate(Page.TEAM)} className="px-6 py-2 border border-primary-600 text-primary-600 rounded-md hover:bg-primary-50 transition-colors">
-              Ver Equipe Médica Completa
-            </button>
-          </div>
+
+          <button
+            onClick={() => onNavigate(Page.TEAM)}
+            className="mt-8 inline-flex items-center gap-2 text-primary-700 font-semibold hover:text-primary-800"
+          >
+            Ver equipe médica completa
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
       </section>
 
-      {/* SECTION 7: FINAL CTA */}
-      <section className="py-16 bg-primary-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-            Sua saúde em primeiro lugar
-          </h2>
-          <p className="mt-4 text-xl text-primary-100">
-            Agende sua consulta online agora mesmo ou entre em contato. Estamos prontos para atender você e sua família.
+      {/* DEPOIMENTOS */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+        <div className="flex items-center justify-between gap-4 mb-10">
+          <div>
+            <p className="text-sm font-semibold text-primary-600 uppercase tracking-[0.2em]">Experiências reais</p>
+            <h2 className="text-3xl font-semibold text-slate-900">Pacientes que confiam na Vida & Saúde</h2>
+            <p className="mt-2 text-slate-600 max-w-2xl">Atendimento humano, comunicação clara e resultados que geram tranquilidade.</p>
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((item) => (
+            <article key={item.id} className="rounded-2xl bg-white border border-slate-100 p-6 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <img
+                  src={item.avatar}
+                  alt={`Foto de ${item.name}`}
+                  className="h-12 w-12 rounded-full object-cover"
+                  loading="lazy"
+                />
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{item.name}</p>
+                  <p className="text-xs text-slate-500">{item.role}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, index) => (
+                  <Star key={index} className="h-4 w-4 text-amber-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">“{item.content}”</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-emerald-500 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.2),transparent_35%)]" aria-hidden />
+        <div className="max-w-5xl mx-auto px-6 lg:px-12 py-16 text-center relative">
+          <h2 className="text-3xl md:text-4xl font-semibold">Sua saúde em primeiro lugar, com menos espera e mais acolhimento.</h2>
+          <p className="mt-4 text-lg text-primary-50 max-w-3xl mx-auto">
+            Agende online, escolha o especialista e seja atendido em um ambiente pensado para a sua tranquilidade.
           </p>
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate(Page.CONTACT)}
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-primary-700 font-semibold shadow-sm hover:bg-primary-50 transition"
             >
-              <Calendar className="mr-2 h-5 w-5" />
-              Agendar Consulta
+              Agendar agora
+              <Calendar className="h-5 w-5" />
             </button>
             <button
               onClick={() => onNavigate(Page.CONTACT)}
-              className="inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-primary-700"
+              className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-white font-semibold hover:bg-white/10 transition"
             >
-              Fale Conosco
+              Fale com a equipe
+              <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </div>
       </section>
-
     </div>
   );
 };
