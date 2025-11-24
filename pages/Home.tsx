@@ -2,7 +2,7 @@ import React from 'react';
 import { Page } from '../types';
 import { Clock, Shield, Users, ArrowRight, Star, Calendar, CheckCircle } from 'lucide-react';
 import { SERVICES, DOCTORS, TESTIMONIALS } from '../constants';
-import * as Icons from 'lucide-react';
+import { getIconComponent } from '../utils/iconHelper';
 
 interface HomeProps {
   onNavigate: (page: Page) => void;
@@ -12,10 +12,9 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }) => {
   
-  const getIcon = (iconName: string) => {
-    // @ts-ignore
-    const IconComponent = Icons[iconName];
-    return IconComponent ? <IconComponent className="h-8 w-8 text-primary-600" /> : <Clock className="h-8 w-8" />;
+  const renderIcon = (iconName: string) => {
+    const IconComponent = getIconComponent(iconName);
+    return <IconComponent className="h-8 w-8 text-primary-600" />;
   };
 
   return (
@@ -116,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
               >
                 <div className="p-6">
                   <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-50 text-primary-600 mb-4">
-                    {getIcon(service.icon)}
+                    {renderIcon(service.icon)}
                   </div>
                   <h3 className="text-lg font-medium text-gray-900">{service.title}</h3>
                   <p className="mt-2 text-base text-gray-500">{service.description}</p>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Page, Service } from '../types';
 import { SERVICES } from '../constants';
 import { ArrowLeft, Clock, CheckCircle, FileText, Calendar } from 'lucide-react';
-import * as Icons from 'lucide-react';
+import { getIconComponent } from '../utils/iconHelper';
 
 interface ServiceDetailsProps {
   serviceId: number | null;
@@ -12,10 +12,9 @@ interface ServiceDetailsProps {
 const ServiceDetails: React.FC<ServiceDetailsProps> = ({ serviceId, onNavigate }) => {
   const service = SERVICES.find(s => s.id === serviceId);
 
-  const getIcon = (iconName: string) => {
-    // @ts-ignore
-    const IconComponent = Icons[iconName];
-    return IconComponent ? <IconComponent className="h-12 w-12 text-primary-600" /> : null;
+  const renderIcon = (iconName: string) => {
+    const IconComponent = getIconComponent(iconName);
+    return <IconComponent className="h-12 w-12 text-primary-600" />;
   };
 
   if (!service) {
@@ -46,7 +45,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ serviceId, onNavigate }
           
           <div className="flex items-center">
             <div className="p-4 bg-white rounded-2xl shadow-sm mr-6">
-                {getIcon(service.icon)}
+                {renderIcon(service.icon)}
             </div>
             <div>
                 <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">{service.title}</h1>

@@ -1,5 +1,4 @@
 import { Doctor, Service, Testimonial } from './types';
-import { Heart, Stethoscope, Activity, Clock, Shield, Users, Phone, Mail, MapPin, Brain, Eye, Bone } from 'lucide-react';
 
 export const DOCTORS: Doctor[] = [
   {

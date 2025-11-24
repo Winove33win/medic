@@ -1,6 +1,6 @@
 import React from 'react';
 import { SERVICES } from '../constants';
-import * as Icons from 'lucide-react';
+import { getIconComponent } from '../utils/iconHelper';
 
 interface ServicesProps {
     onServiceClick: (id: number) => void;
@@ -8,10 +8,9 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
   
-  const getIcon = (iconName: string) => {
-    // @ts-ignore
-    const IconComponent = Icons[iconName];
-    return IconComponent ? <IconComponent className="h-8 w-8 text-white" /> : null;
+  const renderIcon = (iconName: string) => {
+    const IconComponent = getIconComponent(iconName);
+    return <IconComponent className="h-8 w-8 text-white" />;
   };
 
   return (
@@ -29,7 +28,7 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
             <div key={service.id} className="flex flex-col bg-gray-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
               <div className="p-8 flex-1">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-600 shadow-lg mb-6">
-                  {getIcon(service.icon)}
+                  {renderIcon(service.icon)}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
                 <p className="text-gray-600 leading-relaxed">
