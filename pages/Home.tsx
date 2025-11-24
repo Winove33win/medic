@@ -61,6 +61,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&q=80&w=1200"
             alt="Equipe médica da Clínica Vida e Saúde em atendimento"
+            fetchPriority="high"
+            width="1200"
+            height="800"
           />
         </div>
       </section>
@@ -169,6 +172,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
                   className="w-full h-full object-cover"
                   src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
                   alt="Recepção moderna da clínica médica"
+                  loading="lazy"
+                  width="800"
+                  height="600"
                 />
               </div>
             </div>
@@ -192,7 +198,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
                 </div>
                 <p className="text-gray-600 italic mb-4">"{item.content}"</p>
                 <div className="flex items-center">
-                  <img src={item.avatar} alt={`Foto de ${item.name}`} className="h-10 w-10 rounded-full object-cover mr-3" />
+                  <img 
+                    src={item.avatar} 
+                    alt={`Foto de ${item.name}`} 
+                    className="h-10 w-10 rounded-full object-cover mr-3"
+                    loading="lazy"
+                    width="40"
+                    height="40"
+                  />
                   <div>
                     <p className="text-sm font-bold text-gray-900">{item.name}</p>
                     <p className="text-xs text-gray-500">{item.role}</p>
@@ -218,7 +231,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
                 onClick={() => onDoctorClick(doc.id)}
               >
-                <img className="w-full h-48 object-cover" src={doc.image} alt={`Foto Dr(a) ${doc.name} - ${doc.specialty}`} />
+                <img 
+                  className="w-full h-48 object-cover" 
+                  src={doc.image} 
+                  alt={`Foto Dr(a) ${doc.name} - ${doc.specialty}`}
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-medium text-gray-900">{doc.name}</h3>
                   <p className="text-primary-600 text-sm mb-1">{doc.specialty}</p>

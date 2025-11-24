@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from '../types';
+import { Page, Doctor } from '../types';
 import { DOCTORS } from '../constants';
 import { ArrowLeft, GraduationCap, Languages, Calendar, CheckCircle } from 'lucide-react';
 
@@ -46,6 +46,9 @@ const DoctorDetails: React.FC<DoctorDetailsProps> = ({ doctorId, onNavigate }) =
                 src={doctor.image} 
                 alt={doctor.name} 
                 className="w-full h-full object-cover min-h-[300px] md:min-h-[500px]"
+                fetchPriority="high"
+                width="600"
+                height="600"
               />
             </div>
 

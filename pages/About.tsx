@@ -14,7 +14,14 @@ const About: React.FC = () => {
         {/* History Section */}
         <div className="flex flex-col md:flex-row items-center mb-16 gap-12">
             <div className="w-full md:w-1/2">
-                <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&q=80&w=800" alt="História da clínica" className="rounded-lg shadow-lg" />
+                <img 
+                  src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&q=80&w=800" 
+                  alt="História da clínica" 
+                  className="rounded-lg shadow-lg"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
             </div>
             <div className="w-full md:w-1/2">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Nossa História</h3>

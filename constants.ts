@@ -6,7 +6,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Carlos Mendes",
     specialty: "Cardiologia",
     crm: "CRM/SP 12345",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=600&h=600",
     bio: "Dr. Carlos Mendes é referência em cardiologia clínica e intervencionista com mais de 15 anos de experiência. Dedica-se à prevenção e tratamento de doenças cardiovasculares, sempre focando na qualidade de vida do paciente.",
     education: [
       "Graduação em Medicina pela USP",
@@ -22,7 +22,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dra. Ana Silva",
     specialty: "Pediatria",
     crm: "CRM/SP 67890",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600&h=600",
     bio: "Dra. Ana Silva é apaixonada pelo cuidado infantil, acompanhando o desenvolvimento desde os primeiros dias de vida até a adolescência. Sua abordagem é acolhedora, focada em criar vínculos de confiança com as famílias.",
     education: [
       "Graduação em Medicina pela UNIFESP",
@@ -37,7 +37,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dr. Roberto Costa",
     specialty: "Ortopedia",
     crm: "CRM/SP 11223",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600&h=600",
     bio: "Especialista em medicina esportiva e cirurgia do joelho, Dr. Roberto Costa atua no tratamento de lesões complexas e reabilitação. Já atuou como médico de diversas equipes esportivas profissionais.",
     education: [
       "Graduação em Medicina pela Santa Casa",
@@ -53,7 +53,7 @@ export const DOCTORS: Doctor[] = [
     name: "Dra. Julia Ferreira",
     specialty: "Dermatologia",
     crm: "CRM/SP 44556",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=600&h=600",
     bio: "Dra. Julia une ciência e estética para cuidar da saúde da pele. Especialista em dermatologia clínica, cirúrgica e cosmiatria, oferece tratamentos personalizados para acne, melasma e rejuvenescimento.",
     education: [
       "Graduação em Medicina pela UNICAMP",
