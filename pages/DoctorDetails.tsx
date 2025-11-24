@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Doctor } from '../types';
+import { Page } from '../types';
 import { DOCTORS } from '../constants';
 import { ArrowLeft, GraduationCap, Languages, Calendar, CheckCircle } from 'lucide-react';
 
