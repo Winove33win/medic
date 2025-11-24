@@ -67,10 +67,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-800 pt-8 text-center flex flex-col items-center">
+          <p className="text-gray-500 text-sm mb-2">
             &copy; {new Date().getFullYear()} Clínica Vida & Saúde. Todos os direitos reservados.
           </p>
+          <button onClick={() => onNavigate(Page.ADMIN_LOGIN)} className="text-gray-700 text-xs hover:text-gray-500">
+            Área Restrita
+          </button>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from '../types';
-import { DOCTORS } from '../constants';
+import { useDoctors } from '../context/DoctorContext';
 import { ArrowLeft, GraduationCap, Languages, Calendar, CheckCircle } from 'lucide-react';
 
 interface DoctorDetailsProps {
@@ -9,7 +9,8 @@ interface DoctorDetailsProps {
 }
 
 const DoctorDetails: React.FC<DoctorDetailsProps> = ({ doctorId, onNavigate }) => {
-  const doctor = DOCTORS.find(d => d.id === doctorId);
+  const { doctors } = useDoctors();
+  const doctor = doctors.find(d => d.id === doctorId);
 
   if (!doctor) {
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Page } from '../types';
 import { Clock, Shield, Users, ArrowRight, Star, Calendar, CheckCircle } from 'lucide-react';
-import { SERVICES, DOCTORS, TESTIMONIALS } from '../constants';
+import { SERVICES, TESTIMONIALS } from '../constants';
+import { useDoctors } from '../context/DoctorContext';
 import { getIconComponent } from '../utils/iconHelper';
 
 interface HomeProps {
@@ -11,6 +12,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }) => {
+  const { doctors } = useDoctors();
   
   const renderIcon = (iconName: string) => {
     const IconComponent = getIconComponent(iconName);
@@ -225,7 +227,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onDoctorClick, onServiceClick }
             <p className="mt-4 text-lg text-gray-500">Conheça nossos médicos cardiologistas, pediatras e especialistas.</p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {DOCTORS.map((doc) => (
+            {doctors.slice(0, 4).map((doc) => (
               <div 
                 key={doc.id} 
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
